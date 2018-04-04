@@ -57,7 +57,7 @@ titanxyz.on('message', async (message) => {
 	  
     if (command === 'clear') {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('Ошибка');
-        if (!args[0]) retsurn message.reply('Ошибка');
+        if (!args[0]) return message.reply('Ошибка');
         clear_count(message.channel, parseInt(args[0])+1);
 	}
     
