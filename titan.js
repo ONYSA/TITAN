@@ -10,6 +10,16 @@ function clear (channel) {
     })
 }
 
+function clear_count (channel, count) {
+    if (count > 100) {
+        channel.bulkDelete(100).then(() => {clear(channel, count-100)});
+    } else {
+        channel.bulkDelete(count).then(() => {
+            message.channel.send(`Удалил ${messages.size} сообщений!`).then((msg) => {msg.delete(3000);});
+        });
+    }
+}
+
 function declOfNum(number, titles) {
     let cases = [2, 0, 1, 1, 1, 2];
     return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
@@ -25,12 +35,22 @@ titanxyz.on('message', async (message) => {
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
       const command = args.shift().toLowerCase();
 
+    if (command === 'servers') {
+        const embed = new Discord.RichEmbed()
+            .setDescription(`Servers ${titanxyz.guilds.size}`);
+        message.channel.send({embed: embed});
+    }
+    
     if (command === 'clear') {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('Ошибка');
         if (!args[0]) return message.reply('Ошибка');
-        message.channel.bulkDelete(parseInt(args[0], 10)+1).then(messages => {
-            message.channel.send(`Удалил ${messages.size} сообщений!`).then((msg) => {msg.delete(3000);});
-        });
+        clear_count(message.channel, parseInt(args[0])+1);
+    }
+    
+    if (command === 'clear_all') {
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('Ошибка');
+        if (!args[0]) return message.reply('Ошибка');
+        clear(message.channel);
     }
 });
 
