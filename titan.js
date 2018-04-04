@@ -10,12 +10,13 @@ function clear (channel) {
     })
 }
 
-function clear_count (channel, count) {
+function clear_count (channel, count, count_all) {
+    
     if (count > 100) {
-        channel.bulkDelete(100).then(() => {clear(channel, count-100)});
+        channel.bulkDelete(100).then(() => {clear(channel, count-100, count_all)});
     } else {
         channel.bulkDelete(count).then(() => {
-            message.channel.send(`Удалил ${messages.size} сообщений!`).then((msg) => {msg.delete(3000);});
+            message.channel.send(`Удалил ${count_all} сообщений!`).then((msg) => {msg.delete(3000);});
         });
     }
 }
@@ -44,12 +45,11 @@ titanxyz.on('message', async (message) => {
     if (command === 'clear') {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('Ошибка');
         if (!args[0]) return message.reply('Ошибка');
-        clear_count(message.channel, parseInt(args[0])+1);
+        clear_count(message.channel, parseInt(args[0])+1, parseInt(args[0])+1);
     }
     
     if (command === 'clear_all') {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('Ошибка');
-        if (!args[0]) return message.reply('Ошибка');
         clear(message.channel);
     }
 });
