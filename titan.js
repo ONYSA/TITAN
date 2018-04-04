@@ -29,18 +29,21 @@ function declOfNum(number, titles) {
     return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
 }
 
+titanxyz.on('ready', async () => {
+    titanxyz.user.setPresence({ game: { name: `onysa.ru`, type: 0 } }).catch();
+})
+
 titanxyz.on('message', async (message) => {
     if(message.author.bot) return;
     if(message.content.indexOf(prefix) !== 0) return;
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
       const command = args.shift().toLowerCase();
-	  
-if (command === 'servers') {
-        const embed = new Discord.RichEmbed()
-            .setDescription(`Servers ${titanxyz.guilds.size}`);
-        message.channel.send({embed: embed});
-		}
-		})
+    
+    if (command === 'clear_all') {
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('Ошибка');
+        clear(message.channel);
+    }
+})
 
 titanxyz.on('ready', async () => {
     titanxyz.user.setPresence({ game: { name: `onysa.ru`, type: 0 } }).catch();
