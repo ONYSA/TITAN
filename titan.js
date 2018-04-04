@@ -30,7 +30,7 @@ function declOfNum(number, titles) {
 }
 
 titanxyz.on('ready', async () => {
-    titanxyz.user.setPresence({ game: { name: `onysa.ru`, type: 3 } }).catch();
+    titanxyz.user.setPresence({ game: { name: `onysa.ru`, type: 0 } }).catch();
 })
 
 titanxyz.on('message', async (message) => {
