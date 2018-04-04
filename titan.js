@@ -3,7 +3,7 @@ const titanxyz = new Discord.Client();
 const prefix = '.';
 
 function clear (channel) {
-	channel.bulkDelete(98).then(messages => {
+    channel.bulkDelete(98).then(messages => {
         if (messages.size === 98) {
             clear(channel);
         } else {
@@ -38,28 +38,22 @@ titanxyz.on('message', async (message) => {
     if(message.content.indexOf(prefix) !== 0) return;
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
       const command = args.shift().toLowerCase();
-    
-    if (command === 'clear_all') {
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('Ошибка');
-        clear(message.channel);
-    }
-})
-
-titanxyz.on('ready', async () => {
-    titanxyz.user.setPresence({ game: { name: `onysa.ru`, type: 0 } }).catch();
-})
-
-titanxyz.on('message', async (message) => {
-    if(message.author.bot) return;
-    if(message.content.indexOf(prefix) !== 0) return;
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
-      const command = args.shift().toLowerCase();
 	  
+	if (command === 'ping') {
+    message.reply('Pong!');
+	}
+
+    if (command === 'servers') {
+        const embed = new Discord.RichEmbed()
+            .setDescription(`Servers ${titanxyz.guilds.size}`);
+        message.channel.send({embed: embed});
+    }
+	
     if (command === 'clear') {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('Ошибка');
         if (!args[0]) return message.reply('Ошибка');
         clear_count(message.channel, parseInt(args[0])+1);
-	}
+    }
     
     if (command === 'clear_all') {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('Ошибка');
