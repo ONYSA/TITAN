@@ -30,7 +30,7 @@ function declOfNum(number, titles) {
 }
 
 titanxyz.on('ready', async () => {
-    titanxyz.user.setPresence({ game: { name: `onysa.ru`, type: 0 } }).catch();
+    titanxyz.user.setActivity(`onysa.ru`);
 })
 
 titanxyz.on('message', async (message) => {
@@ -38,10 +38,6 @@ titanxyz.on('message', async (message) => {
     if(message.content.indexOf(prefix) !== 0) return;
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
       const command = args.shift().toLowerCase();
-	  
-	if (command === 'ping') {
-    message.reply('Pong!');
-	}
 
     if (command === 'servers') {
         const embed = new Discord.RichEmbed()
@@ -59,6 +55,11 @@ titanxyz.on('message', async (message) => {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('Ошибка');
         clear(message.channel);
     }
+	
+	//Reken's embed!!!
+	if (command === 'ping') {
+    message.reply('Pong!');
+	}
 });
 
 titanxyz.login(process.env.HTOKEN);
