@@ -1,0 +1,15 @@
+{
+  "name": "TITANxyz",
+  "description": "bewater",
+  "version": "1.0.0",
+  "main": "titan.js",
+  "scripts": {
+    "start": "node titan.js"
+  },
+  "dependencies": {
+    "discord.js": "11.3.0",
+    "request": "2.81.0",
+    "rgbcolor": "1.0.1",
+    "get-image-colors": "1.8.1"
+  }
+}
