@@ -29,8 +29,19 @@ function declOfNum(number, titles) {
     return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
 }
 
-titanxyz.on('ready', async () => {
-    titanxyz.user.setActivity(`onysa.ru`);
+titanxyz.on("ready", () => {
+	console.log(`Bot has started, with ${titanxyz.users.size} users, in ${titanxyz.channels.size} channels of ${titanxyz.guilds.size} guilds.`);
+	titanxyz.user.setActivity(`Serving ${titanxyz.guilds.size} servers`);
+})
+
+titanxyz.on("guildCreate", guild => {
+	console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+	titanxyz.user.setActivity(`Serving ${titanxyz.guilds.size} servers`);
+})
+
+titanxyz.on("guildDelete", guild => {
+	console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
+	titanxyz.user.setActivity(`Serving ${titanxyz.guilds.size} servers`);
 })
 
 titanxyz.on('message', async (message) => {
