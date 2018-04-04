@@ -29,6 +29,12 @@ function declOfNum(number, titles) {
     return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
 }
 
+titanxyz.on('message', msg => {
+  if (msg.content === 'ping') {
+    msg.reply('Pong!');
+  }
+});
+
 titanxyz.on('ready', async () => {
     titanxyz.user.setPresence({ game: { name: `onysa.ru`, type: 0 } }).catch();
 })
