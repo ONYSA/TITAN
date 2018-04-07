@@ -4,8 +4,8 @@ const prefix = '.';
 const os = require('os');
 
 function clear (channel) {
-    channel.bulkDelete(98).then(messages => {
-        if (messages.size === 98) {
+    channel.bulkDelete(99).then(messages => {
+        if (messages.size === 99) {
             clear(channel);
         } else {
             channel.send(`done!`).then((msg) => {msg.delete(3000);});
@@ -35,7 +35,7 @@ titanxyz.on('message', async (message) => {
     if(message.content.indexOf(prefix) !== 0) return;
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
       const command = args.shift().toLowerCase();
-
+	  
     if (command === 'servers') {
         const embed = new Discord.RichEmbed()
             .setTitle(`Servers ${titanxyz.guilds.size}`);
@@ -47,14 +47,14 @@ titanxyz.on('message', async (message) => {
         if (!args[0]) return message.reply('Ошибка');
         clear_count(message.channel, parseInt(args[0])+1);
     }
-    
+	
     if (command === 'clear_all') {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('Ошибка');
         clear(message.channel);
     }
 	
 	if (command === 'ping') {
-		message.reply('Pong!');
+		message.reply('pong!');
 	}
 	
 	if (command === 'userinfo') {
@@ -62,7 +62,7 @@ titanxyz.on('message', async (message) => {
 		if (!member) return message.reply('Ошибка');
 		const embed = new Discord.RichEmbed()
 			.setAuthor(member.user.tag, member.user.avatarURL)
-			.setDescription(`Дата регистрации: ${member.user.createdAt.toISOString().replace(/T/, ' ').replace(/\..+/, '')}`);
+			.setDescription(`reg: ${member.user.createdAt.toISOString().replace(/T/, ' ').replace(/\..+/, '')}`);
 		message.channel.send({embed});
 	}
 	
