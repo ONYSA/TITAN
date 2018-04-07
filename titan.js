@@ -38,7 +38,7 @@ titanxyz.on('message', async (message) => {
 
     if (command === 'servers') {
         const embed = new Discord.RichEmbed()
-            .setDescription(`Servers ${titanxyz.guilds.size}`);
+            .setTitle(`Servers ${titanxyz.guilds.size}`);
         message.channel.send({embed: embed});
     }
 	
@@ -65,6 +65,7 @@ titanxyz.on('message', async (message) => {
 			.setDescription(`Дата регистрации: ${member.user.createdAt.toISOString().replace(/T/, ' ').replace(/\..+/, '')}`);
 		message.channel.send({embed});
 	}
+	
 });
 
 titanxyz.login(process.env.HTOKEN);
