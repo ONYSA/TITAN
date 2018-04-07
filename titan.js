@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const titanxyz = new Discord.Client();
 const prefix = '.';
+const os
 
 function clear (channel) {
     channel.bulkDelete(98).then(messages => {
@@ -53,7 +54,16 @@ titanxyz.on('message', async (message) => {
     }
 	
 	if (command === 'ping') {
-    message.reply('Pong!');
+		message.reply('Pong!');
+	}
+	
+	if (command === 'userinfo') {
+		const member = message.mentions.members.first();
+		if (!member) return message.reply('Ошибка');
+		const embed = new Discord.RichEmbed()
+			.setAuthor(member.user.tag, member.user.avatarURL)
+			.setDescription(`Дата регистрации: ${member.user.createdAt.toISOString().replace(/T/, ' ').replace(/\..+/, '')}`);
+		message.channel.send({embed});
 	}
 });
 
