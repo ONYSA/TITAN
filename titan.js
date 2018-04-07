@@ -7,7 +7,7 @@ function clear (channel) {
         if (messages.size === 98) {
             clear(channel);
         } else {
-            channel.send(`Удалил все сообщения!`).then((msg) => {msg.delete(3000);});
+            channel.send(`done!`).then((msg) => {msg.delete(3000);});
         }
     })
 }
@@ -19,7 +19,7 @@ function clear_count (channel, count, count_all = 0) {
     } else {
         channel.bulkDelete(count).then(() => {            
             count_all = count_all + count;
-            channel.send(`Удалил ${count_all} сообщений!`).then((msg) => {msg.delete(3000);});
+            channel.send(`Удалено ${count_all} ${declOfNum(count_all, ['сообщение','сообщения','сообщений'])}`).then((msg) => {msg.delete(3000);});
         });
     }
 }
@@ -52,7 +52,6 @@ titanxyz.on('message', async (message) => {
         clear(message.channel);
     }
 	
-	//Reken's embed!!!
 	if (command === 'ping') {
     message.reply('Pong!');
 	}
