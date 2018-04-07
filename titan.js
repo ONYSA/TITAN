@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const titanxyz = new Discord.Client();
 const prefix = '.';
-const os
+const os = require('os');
 
 function clear (channel) {
     channel.bulkDelete(98).then(messages => {
