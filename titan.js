@@ -3,12 +3,17 @@ const titanxyz = new Discord.Client();
 const prefix = '.';
 const os = require('os');
 
+function declOfNum(number, titles) {
+    let cases = [2, 0, 1, 1, 1, 2];
+    return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
+}
+
 function clear (channel) {
     channel.bulkDelete(99).then(messages => {
         if (messages.size === 99) {
             clear(channel);
         } else {
-            channel.send(`done!`).then((msg) => {msg.delete(3000);});
+            channel.send(`${count_all} ${declOfNum(count_all, ['сообщение','сообщения','сообщений'])} done!`).then((msg) => {msg.delete(3000);});
         }
     })
 }
@@ -20,14 +25,9 @@ function clear_count (channel, count, count_all = 0) {
     } else {
         channel.bulkDelete(count).then(() => {            
             count_all = count_all + count;
-            channel.send(`Удалено ${count_all} ${declOfNum(count_all, ['сообщение','сообщения','сообщений'])}.`).then((msg) => {msg.delete(3000);});
+            channel.send(`end ${count_all} ${declOfNum(count_all, ['сообщение','сообщения','сообщений'])}.`).then((msg) => {msg.delete(3000);});
         });
     }
-}
-
-function declOfNum(number, titles) {
-    let cases = [2, 0, 1, 1, 1, 2];
-    return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
 }
 
 titanxyz.on('message', async (message) => {
@@ -38,7 +38,7 @@ titanxyz.on('message', async (message) => {
 	  
     if (command === 'servers') {
         const embed = new Discord.RichEmbed()
-            .setTitle(`Servers ${titanxyz.guilds.size}`);
+            .setTitle(`onair ${titanxyz.guilds.size}`);
         message.channel.send({embed: embed});
     }
 	
@@ -62,7 +62,7 @@ titanxyz.on('message', async (message) => {
 		if (!member) return message.reply('reboot.');
 		const embed = new Discord.RichEmbed()
 			.setAuthor(member.user.tag, member.user.avatarURL)
-			.setDescription(`reg.: ${member.user.createdAt.toISOString().replace(/T/, ' ').replace(/\..+/, '')}`);
+			.setDescription(`reg.d.: ${member.user.createdAt.toISOString().replace(/T/, ' ').replace(/\..+/, '')}`);
 		message.channel.send({embed});
 	}
 	
