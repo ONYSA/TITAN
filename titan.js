@@ -43,13 +43,13 @@ titanxyz.on('message', async (message) => {
     }
 	
     if (command === 'clear') {
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('Ошибка');
-        if (!args[0]) return message.reply('Ошибка');
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('reboot.');
+        if (!args[0]) return message.reply('reboot.');
         clear_count(message.channel, parseInt(args[0])+1);
     }
 	
     if (command === 'clear_all') {
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('Ошибка');
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('reboot.');
         clear(message.channel);
     }
 	
@@ -59,10 +59,10 @@ titanxyz.on('message', async (message) => {
 	
 	if (command === 'userinfo') {
 		const member = message.mentions.members.first();
-		if (!member) return message.reply('Ошибка');
+		if (!member) return message.reply('reboot.');
 		const embed = new Discord.RichEmbed()
 			.setAuthor(member.user.tag, member.user.avatarURL)
-			.setDescription(`reg: ${member.user.createdAt.toISOString().replace(/T/, ' ').replace(/\..+/, '')}`);
+			.setDescription(`reg.: ${member.user.createdAt.toISOString().replace(/T/, ' ').replace(/\..+/, '')}`);
 		message.channel.send({embed});
 	}
 	
