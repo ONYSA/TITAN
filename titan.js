@@ -13,7 +13,7 @@ function clear (channel) {
         if (messages.size === 99) {
             clear(channel);
         } else {
-            channel.send(`${count_all} ${declOfNum(count_all, ['сообщение','сообщения','сообщений'])} done!`).then((msg) => {msg.delete(3000);});
+            channel.send(`del. ${count_all} ${declOfNum(count_all, ['сообщение','сообщения','сообщений'])} done.`).then((msg) => {msg.delete(3000);});
         }
     })
 }
@@ -25,7 +25,7 @@ function clear_count (channel, count, count_all = 0) {
     } else {
         channel.bulkDelete(count).then(() => {            
             count_all = count_all + count;
-            channel.send(`end ${count_all} ${declOfNum(count_all, ['сообщение','сообщения','сообщений'])}.`).then((msg) => {msg.delete(3000);});
+            channel.send(`del.l. ${count_all} ${declOfNum(count_all, ['сообщение','сообщения','сообщений'])}.`).then((msg) => {msg.delete(3000);});
         });
     }
 }
