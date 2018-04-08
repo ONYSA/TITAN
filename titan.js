@@ -66,6 +66,10 @@ titanxyz.on('message', async (message) => {
 		message.channel.send({embed});
 	}
 	
+	if (command === 'help') {
+		message.reply('ican''thelpu!');
+	}
+	
 });
 
 titanxyz.login(process.env.HTOKEN);
