@@ -67,7 +67,7 @@ titanxyz.on('message', async (message) => {
 	}
 	
 	if (command === 'help') {
-		message.reply('icanthelpu!');
+		message.reply('ican\'thelpu!\nty zziger#8040');
 	}
 	
 });
