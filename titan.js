@@ -13,7 +13,7 @@ function clear (channel) {
         if (messages.size === 99) {
             clear(channel);
         } else {
-            channel.send(`del. all done.`).then((msg) => {msg.delete(3000);});
+            channel.send(`del. all done.`).then((msg) => {msg.delete(7000);});
         }
     })
 }
