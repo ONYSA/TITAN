@@ -75,8 +75,7 @@ titanxyz.on('message', async (message) => {
 	}
 	
 	if (command === 'time') {
-		if (!args[0]) args[0] = 3;
-		message.reply((new Date(new Date().getTime() + args[0]*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK');
+		message.reply((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK');
 	}
 });
 
