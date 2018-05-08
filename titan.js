@@ -74,6 +74,9 @@ titanxyz.on('message', async (message) => {
 		message.reply('ty zziger#8040');
 	}
 	
+	if (command === 'time') {
+		message.reply((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, ''));
+	}
 });
 
 titanxyz.login(process.env.HTOKEN);
