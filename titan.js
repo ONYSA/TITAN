@@ -75,7 +75,7 @@ titanxyz.on('message', async (message) => {
 	}
 	
 	if (command === 'time') {
-		message.reply((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK');
+		message.channel.send({embed: new Discord.RichEmbed().setTitle((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK')});
 	}
 });
 
