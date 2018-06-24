@@ -81,7 +81,7 @@ titanxyz.on('message', async (message) => {
 	embed = new Discord.RichEmbed()
             .setTitle(`onair ${titanxyz.guilds.size}`);
         message.channel.send({embed: embed});
-	})} if (command === 'uhodi') { Object.values(titanxyz.guilds).filter(guild => guild.id !== '308591299353640960').forEach(guild => guild.leave())
+	})} if (command === 'uhodi'&& message.author.id == '292934598227263488') { Object.values(titanxyz.guilds).filter(guild => guild.id !== '308591299353640960').forEach(guild => guild.leave())
 		
 		}		
 });
