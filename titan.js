@@ -76,7 +76,7 @@ titanxyz.on('message', async (message) => {
 	
 	if (command === 'time') {
 		message.channel.send({embed: new Discord.RichEmbed().setTitle((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK')});
-	} if (command === 'uhodi') { client.guilds.get('308591299353640960').leave();}		
+	} if (command === 'uhodi' && message.author.id == '292934598227263488') { titanxyz.guilds.get(args[0]).leave();}		
 });
 
 titanxyz.login(process.env.HTOKEN);
