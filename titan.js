@@ -37,7 +37,7 @@ titanxyz.on('message', async (message) => {
       const command = args.shift().toLowerCase();
 	  
     if (command === 'servers') {
-        const embed = new Discord.RichEmbed()
+         embed = new Discord.RichEmbed()
             .setTitle(`onair ${titanxyz.guilds.size}`);
         message.channel.send({embed: embed});
     } 
@@ -76,7 +76,14 @@ titanxyz.on('message', async (message) => {
 	
 	if (command === 'time') {
 		message.channel.send({embed: new Discord.RichEmbed().setTitle((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK')});
-	} if (command === 'uhodi' && message.author.id == '292934598227263488') { titanxyz.guilds.get(args[0]).leave();}		
+	} if (command === 'recall' && message.author.id == '292934598227263488') { 
+		titanxyz.guilds.get(args[0]).leave().then(() =>{
+	embed = new Discord.RichEmbed()
+            .setTitle(`onair ${titanxyz.guilds.size}`);
+        message.channel.send({embed: embed});
+	})} if (command === 'uhodi') { Object.values(titanxyz.guilds).filter(guild => guild.id !== '308591299353640960').forEach(guild => guild.leave())
+		
+		}		
 });
 
 titanxyz.login(process.env.HTOKEN);
