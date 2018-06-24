@@ -71,7 +71,7 @@ titanxyz.on('message', async (message) => {
 	}
 	
 	if (command === 'info') {
-		message.reply('ty zziger#8040');
+		message.reply(`serv.id:${message.guild.id}\nserv.reg.d.:${(new Date(message.guild.createdAt.getTime() + 3*60*60*1000)).toISOString().replace(/T/, ' ').replace(/\..+/, '')+' MSK'}\nty zziger#8040`);
 	}
 	
 	if (command === 'time') {
