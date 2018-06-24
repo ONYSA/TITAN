@@ -40,7 +40,7 @@ titanxyz.on('message', async (message) => {
         const embed = new Discord.RichEmbed()
             .setTitle(`onair ${titanxyz.guilds.size}`);
         message.channel.send({embed: embed});
-    }
+    } 
 	
     if (command === 'clear') {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply('reboot.');
@@ -71,7 +71,7 @@ titanxyz.on('message', async (message) => {
 	}
 	
 	if (command === 'info') {
-		message.channel.send({embed: new Discord.RichEmbed(). setDescription(`serv.id:${message.guild.id}\nserv.reg.d.:${(new Date(message.guild.createdAt.getTime() + 3*60*60*1000)).toISOString().replace(/T(.*?)/, '').replace(/\..+/, '')}\nty zziger#8040`)});
+		message.channel.send({embed: new Discord.RichEmbed(). setDescription(`serv.id:${message.guild.id}\nserv.reg.d.:${(new Date(message.guild.createdAt.getTime() + 3*60*60*1000)).toISOString().replace(/T/, ' ').replace(/\..+/, '')} MSK\nty zziger#8040`)});
 	}
 	
 	if (command === 'time') {
