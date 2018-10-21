@@ -62,7 +62,7 @@ titanxyz.on('message', async (message) => {
 		if (!member) return message.reply('reboot.');
 		const embed = new Discord.RichEmbed()
 			.setAuthor(member.user.tag, member.user.avatarURL)
-			.setDescription(`reg.d.: ${member.user.createdAt.toISOString().replace(/T/, ' ').replace(/\..+/, '')}\ns.id: ${member.user.id}`);
+			.setDescription(`reg.d.: ${member.user.createdAt.toISOString().replace(/T/, ' ').replace(/\..+/, '')}\nsid: ${member.user.id}`);
 		message.channel.send({embed});
 	}
 	
