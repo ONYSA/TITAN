@@ -109,6 +109,13 @@ titanxyz.on('message', async (message) => {
 			message.channel.send(embed);
 		});
 	}
+
+	if (command == 'test') {
+		let query = args.join(' ');
+		weather.find({search: query, degreeType: 'C', lang: 'ru-RU'}, function(err, result) {
+			message.channel.sendCode('json', JSON.stringify(result, null, 2));
+		});
+	}
 });
 
 titanxyz.login(process.env.HTOKEN);
