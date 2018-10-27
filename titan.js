@@ -77,7 +77,7 @@ titanxyz.on('message', async (message) => {
 	
 	if (command === 'time') {
 		let query = args.join(' ');
-		if (!query) query = 'Москва';
+		if (!query) return message.channel.send({embed: new Discord.RichEmbed().setTitle(name).setDescription((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+` MSK`)});
 		weather.find({search: query, degreeType: 'C', lang: 'ru-RU'}, function(err, result) {
 			let timezone, name;
 			if (result.length < 1) {
