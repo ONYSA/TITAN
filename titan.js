@@ -98,12 +98,14 @@ titanxyz.on('message', async (message) => {
 
 	if (command == 'weather') {
 		let query = args.join(' ');
-		weather.find({search: query, degreeType: 'C'}, function(err, result) {
+		weather.find({search: query, degreeType: 'C', lang: 'ru-RU'}, function(err, result) {
 			if(err) console.log(err);
 			if (result.length < 1) return message.channel.send(new Discord.RichEmbed().setDescription('Погода не найдена'));
-			let data = result[0].current;
+			let data = result[0];
 			let embed = new Discord.RichEmbed()
-				.setDescription(`Текущая температура: ${data.temperature} °C`);
+				.setTitle(data.location.name)
+				.setDescription(`${data.current.skytext}, ${data.current.temperature} °C\nОщущается как ${data.current.feelslike} °C\nВетер: ${data.current.winddisplay}`)
+				.setThumbnail(data.current.imageUrl);
 			message.channel.send(embed);
 		});
 	}
