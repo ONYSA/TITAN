@@ -77,7 +77,7 @@ titanxyz.on('message', async (message) => {
 	
 	if (command === 'time') {
 		let query = args.join(' ');
-		if (!query) message.channel.send({embed: new Discord.RichEmbed().setTitle((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK')});
+		if (!query) return message.channel.send({embed: new Discord.RichEmbed().setTitle((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK')});
 		weather.find({search: query, degreeType: 'C', lang: 'ru-RU'}, function(err, result) {
 			let timezone, name;
 			if (result.length < 1) {
