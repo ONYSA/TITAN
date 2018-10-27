@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const titanxyz = new Discord.Client();
 const prefix = '.';
 const os = require('os');
+const weather = require('weather-js');
 
 function declOfNum(number, titles) {
     let cases = [2, 0, 1, 1, 1, 2];
@@ -76,16 +77,36 @@ titanxyz.on('message', async (message) => {
 	
 	if (command === 'time') {
 		message.channel.send({embed: new Discord.RichEmbed().setTitle((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK')});
-	} if (command === 'recall' && message.author.id == '292934598227263488') { 
+	}
+	
+	if (command === 'recall' && message.author.id == '292934598227263488') { 
 		titanxyz.guilds.get(args[0]).leave().then(() =>{
-	embed = new Discord.RichEmbed()
-            .setTitle(`onair ${titanxyz.guilds.size}`);
-        message.channel.send({embed: embed});
-	})} if (command === 'uhodi'&& message.author.id == '292934598227263488') { titanxyz.guilds.forEach(guild => {if (guild.id != '308591299353640960') guild.leave()})
-		
+		embed = new Discord.RichEmbed()
+			.setTitle(`onair ${titanxyz.guilds.size}`);
+				message.channel.send({embed: embed});
+			})
+	}
+	
+	if (command === 'uhodi'&& message.author.id == '292934598227263488') {
+		titanxyz.guilds.forEach(guild => {
+			if (guild.id != '308591299353640960') guild.leave()
+		})
 		embed = new Discord.RichEmbed()
             .setTitle(`onair ${titanxyz.guilds.size}`);
-        message.channel.send({embed: embed});}		
+        message.channel.send({embed: embed});
+	}	
+
+	if (command == 'weather') {
+		let query = args.join(' ');
+		weather.find({search: query, degreeType: 'C'}, function(err, result) {
+			if(err) console.log(err);
+			if (result.length < 1) return message.channel.send(new Discord.RichEmbed().setDescription('Погода не найдена'));
+			let data = result[0].current;
+			let embed = new Discord.RichEmbed()
+				.setDescription(`Текущая температура: ${data.temperature} °C`);
+			message.channel.send(embed);
+		});
+	}
 });
 
 titanxyz.login(process.env.HTOKEN);
