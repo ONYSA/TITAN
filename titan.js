@@ -76,7 +76,21 @@ titanxyz.on('message', async (message) => {
 	}
 	
 	if (command === 'time') {
-		message.channel.send({embed: new Discord.RichEmbed().setTitle((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK')});
+		let query = args.join(' ');
+		if (!query) query = 'Москва';
+		weather.find({search: query, degreeType: 'C', lang: 'ru-RU'}, function(err, result) {
+			let timezone, name;
+			if (result.length < 1) {
+				timezone = '3';
+				name = 'Москва, Россия';
+			}
+			else {
+				timezone = result[0].location.timezone;
+				name = result[0].location.name;	
+			}
+			if (!timezone.startsWith('-')) timezone = '+'+timezone;
+			message.channel.send({embed: new Discord.RichEmbed().setTitle(name).setDescription((new Date(new Date().getTime() + parseFloat(timezone.replace(/,/g, '.'))*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+` (UTC ${timezone})`)});
+		});
 	}
 	
 	if (command === 'recall' && message.author.id == '292934598227263488') { 
