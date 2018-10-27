@@ -132,7 +132,7 @@ titanxyz.on('message', async (message) => {
 			let data = result[0];
 			let forecast = `${data.location.name}`;
 			data.forecast.forEach((obj) => {
-				forecast+=`\n\n**${obj.day.charAt(0).toUpperCase()}{obj.day.slice(1)} (${obj.date}):**\n${obj.low} °C — ${obj.high} °C\n${obj.skytextday}`
+				forecast+=`\n\n**${obj.day.charAt(0).toUpperCase()}${obj.day.slice(1)} (${obj.date}):**\n${obj.low} °C — ${obj.high} °C\n${obj.skytextday}`
 			})
 			let embed = new Discord.RichEmbed()
 				.setTitle('Прогноз погоды')
