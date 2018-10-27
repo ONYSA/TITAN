@@ -137,6 +137,7 @@ titanxyz.on('message', async (message) => {
 			let embed = new Discord.RichEmbed()
 				.setTitle(data.location.name)
 				.setDescription(forecast);
+			message.channel.send(embed);
 		});
 	}
 });
