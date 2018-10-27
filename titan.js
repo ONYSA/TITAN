@@ -124,10 +124,19 @@ titanxyz.on('message', async (message) => {
 		});
 	}
 
-	if (command == 'test') {
+	if (command == 'forecast') {
 		let query = args.join(' ');
 		weather.find({search: query, degreeType: 'C', lang: 'ru-RU'}, function(err, result) {
-			message.channel.sendCode('json', JSON.stringify(result, null, 2));
+			if(err) console.log(err);
+			if (result.length < 1) return message.channel.send(new Discord.RichEmbed().setDescription('Погода не найдена'));
+			let data = result[0];
+			let forecast = '**Прогноз погоды**';
+			data.forecast.forEach((obj) => {
+				forecast+=`\n\n${obj.day}\n${obj.low} °C - ${obj.high} °C\n${obj.skytextday}`
+			})
+			let embed = new Discord.RichEmbed()
+				.setTitle(data.location.name)
+				.setDescription(forecast);
 		});
 	}
 });
