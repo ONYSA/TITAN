@@ -81,8 +81,7 @@ titanxyz.on('message', async (message) => {
 		weather.find({search: query, degreeType: 'C', lang: 'ru-RU'}, function(err, result) {
 			let timezone, name;
 			if (result.length < 1) {
-				timezone = '3';
-				name = 'Москва, Россия';
+				return message.channel.send({embed: new Discord.RichEmbed().setTitle(name).setDescription((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+` MSK`)});
 			}
 			else {
 				timezone = result[0].location.timezone;
@@ -118,7 +117,7 @@ titanxyz.on('message', async (message) => {
 			let data = result[0];
 			let embed = new Discord.RichEmbed()
 				.setTitle(data.location.name)
-				.setDescription(`${data.current.skytext}, ${data.current.temperature} °C\nОщущается как ${data.current.feelslike} °C\nВетер: ${data.current.winddisplay}`)
+				.setDescription(`${data.current.skytext}, ${data.current.temperature} °C\nПо ощущениям ${data.current.feelslike} °C\nВетер: ${data.current.winddisplay}`)
 				.setThumbnail(data.current.imageUrl);
 			message.channel.send(embed);
 		});
