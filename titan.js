@@ -130,12 +130,12 @@ titanxyz.on('message', async (message) => {
 			if(err) console.log(err);
 			if (result.length < 1) return message.channel.send(new Discord.RichEmbed().setDescription('Погода не найдена'));
 			let data = result[0];
-			let forecast = '**Прогноз погоды**';
+			let forecast = `${data.location.name}`;
 			data.forecast.forEach((obj) => {
-				forecast+=`\n\n__${obj.day.replace(/\b\w/g, l => l.toUpperCase())} (${obj.date}):__\n${obj.low} °C — ${obj.high} °C\n${obj.skytextday}`
+				forecast+=`\n\n**${obj.day.charAt(0).toUpperCase()}{obj.day.slice(1)} (${obj.date}):**\n${obj.low} °C — ${obj.high} °C\n${obj.skytextday}`
 			})
 			let embed = new Discord.RichEmbed()
-				.setTitle(data.location.name)
+				.setTitle('Прогноз погоды')
 				.setDescription(forecast);
 			message.channel.send(embed);
 		});
