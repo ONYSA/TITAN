@@ -7,7 +7,7 @@
     "start": "node titan.js"
   },
   "dependencies": {
-    "discord.js": "11.3.2",
+    "discord.js": "12.2.0",
 	"request": "2.85.0",
 	"weather-js": "2.0.0"
   }
