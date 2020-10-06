@@ -68,7 +68,7 @@ bot.on("message", async (message) => {
 	}
 	
 	if(command === "help"){
-		message.reply("ican\nthelpu!");
+		message.reply("ican'thelpu!");
 	}
 	
 	if(command === "info"){
